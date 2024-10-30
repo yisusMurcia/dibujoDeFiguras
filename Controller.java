@@ -1,4 +1,3 @@
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,10 +8,9 @@ public class Controller {
     private List<Square> squares = new ArrayList<>();
     private Color color;
     private final Random random = new Random();
-    private final View view;
 
     public Controller() {
-        view = new View(this); // Inicializa la ventana y pasa una referencia al controlador
+        View view = new View(this); // Inicializa la ventana y pasa una referencia al controlador
         view.setVisible(true); // Muestra la ventana
     }
 

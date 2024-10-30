@@ -14,12 +14,9 @@ class View extends JFrame {
         setTitle("Dibujo de Cuadrados");
         setFocusable(true);
 
-        clearAllButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.cleanSquareArray();
-                repaint();
-            }
+        clearAllButton.addActionListener(e -> {
+            controller.cleanSquareArray();
+            repaint();
         });
         add(clearAllButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

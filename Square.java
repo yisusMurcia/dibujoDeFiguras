@@ -2,11 +2,11 @@ import java.awt.*;
 
 // Clase que representa un cuadrado
 class Square {
-    private int x;
-    private int y;
-    private int lado;
-    private boolean relleno;
-    private Color color;
+    private final int x;
+    private final int y;
+    private final int lado;
+    private final boolean relleno;
+    private final Color color;
 
     public Square(int x, int y, int lado, boolean relleno, Color color) {
         this.x = x;
