@@ -9,16 +9,23 @@ class View extends JFrame {
     public View(Controller controller) {
         this.controller = controller; // Guardar referencia al controlador
         JButton clearAllButton = new JButton();
-        clearAllButton.setText("Clear window");
+        JTextField squateCounter = new JTextField();
+        JPanel colorLabel = new JPanel();
+        colorLabel.setBackground(color);
 
+        clearAllButton.setText("Clear window");
         setTitle("Dibujo de Cuadrados");
+        squateCounter.setText("Squares: 0");
         setFocusable(true);
 
         clearAllButton.addActionListener(e -> {
             controller.cleanSquareArray();
+            squateCounter.setText("Squares :" + controller.getNumOfSquares());
             repaint();
         });
+        add(colorLabel);
         add(clearAllButton);
+        add(squateCounter);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new FlowLayout());
@@ -42,6 +49,7 @@ class View extends JFrame {
                         color = Color.YELLOW;
                         break;
                 }
+                colorLabel.setBackground(color);
             }
         });
 
@@ -51,11 +59,10 @@ class View extends JFrame {
                 boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
                 controller.setColor(color);
                 controller.addSquare(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
+                squateCounter.setText("Squares :" + controller.getNumOfSquares());
                 repaint(); // Solicita repintar la ventana
             }
         });
-
-        clearAllButton.setActionCommand("ClearAll");
     }
 
     @Override

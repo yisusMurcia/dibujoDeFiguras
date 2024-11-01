@@ -34,6 +34,10 @@ public class Controller {
         this.color = color;
     }
 
+    public int getNumOfSquares(){
+        return squares.size();
+    }
+
     public static void main(String[] args) {
         new Controller();
     }
