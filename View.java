@@ -5,27 +5,38 @@ import java.awt.event.*;
 // Clase que representa la ventana principal
 class View extends JFrame {
     private final Controller controller;
-    Color color = Color.cyan;
+    private Color color = Color.cyan;
+    private final JTextField squareCounter = new JTextField();
+
+
     public View(Controller controller) {
         this.controller = controller; // Guardar referencia al controlador
-        JButton clearAllButton = new JButton();
-        JTextField squateCounter = new JTextField();
+        JButton clearAllButton = new JButton("Clear window");
+        JButton reorganizeSquaresButton = new JButton("Reorganize squares");
         JPanel colorLabel = new JPanel();
+
         colorLabel.setBackground(color);
 
-        clearAllButton.setText("Clear window");
-        setTitle("Dibujo de Cuadrados");
-        squateCounter.setText("Squares: 0");
+
+        setTitle("Square drawing");
+        squareCounter.setText("Squares: 0");
         setFocusable(true);
 
         clearAllButton.addActionListener(e -> {
             controller.cleanSquareArray();
-            squateCounter.setText("Squares :" + controller.getNumOfSquares());
+            squareCounter.setText("Squares:" + controller.getNumOfSquares());
             repaint();
         });
+
+        reorganizeSquaresButton.addActionListener(e->{
+            controller.reorganizeSquares(600, 600);
+            repaint();
+        });
+
         add(colorLabel);
         add(clearAllButton);
-        add(squateCounter);
+        add(squareCounter);
+        add(reorganizeSquaresButton);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new FlowLayout());
@@ -54,12 +65,13 @@ class View extends JFrame {
         });
 
         addMouseListener(new MouseAdapter() {
-            @Override
+                        @Override
             public void mouseClicked(MouseEvent e) {
-                boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
-                controller.setColor(color);
-                controller.addSquare(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
-                squateCounter.setText("Squares :" + controller.getNumOfSquares());
+                if(!controller.deleteSquare(e.getX(), e.getY())){
+                    boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
+                    controller.setColor(color);
+                    controller.addSquare(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
+                }
                 repaint(); // Solicita repintar la ventana
             }
         });
@@ -69,5 +81,6 @@ class View extends JFrame {
     public void paint(Graphics g) {
         super.paintComponents(g); // Limpia el panel antes de dibujar
         controller.drawSquare(g); // Pide al controlador que dibuje los cuadrados
+        squareCounter.setText("Squares:" + controller.getNumOfSquares());
     }
 }

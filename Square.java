@@ -2,8 +2,8 @@ import java.awt.*;
 
 // Clase que representa un cuadrado
 class Square {
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
     private final int lado;
     private final boolean relleno;
     private final Color color;
@@ -22,7 +22,31 @@ class Square {
             g.fillRect(x, y, lado, lado); // Dibuja el cuadrado
         }
 
-        g.setColor(Color.BLACK); // Color del contorno
+        g.setColor(color); // Color del contorno
         g.drawRect(x, y, lado, lado); // Dibuja el cuadrado
+    }
+
+    public boolean inPosition(int x, int y){//Return true if x and y are into the square
+        return (this.x <= x && x <= (this.x + lado) && this.y <= y && y <= (this.y + lado));
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getLado() {
+        return lado;
     }
 }

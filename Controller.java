@@ -38,6 +38,33 @@ public class Controller {
         return squares.size();
     }
 
+    public void reorganizeSquares(int ySize, int xSize){
+        for (Square square : squares){
+            square.setX(random.nextInt(0, xSize - square.getLado()));
+            square.setY(random.nextInt(0, ySize - square.getLado()));
+        }
+    }
+
+    public boolean deleteSquare(int x, int y){
+        for (Square square: squares){//Borarr cuadrado al clicker el borde derecho inferior
+            if ((square.getLado() + square.getX() - 10) <= x && x <= (square.getLado() + square.getX()) && (square.getLado() + square.getY() - 10) <= y &&  y <= (square.getLado() + square.getY())){
+                squares.remove(square);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Square getSquareAt(int x, int y){
+        for(Square square : squares){
+            if(square.inPosition(x, y)){
+                return square;
+            }
+        }
+
+        return null;
+    }
+
     public static void main(String[] args) {
         new Controller();
     }
