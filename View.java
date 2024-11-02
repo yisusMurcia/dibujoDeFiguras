@@ -65,7 +65,7 @@ class View extends JFrame {
         });
 
         addMouseListener(new MouseAdapter() {
-                        @Override
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if(!controller.deleteSquare(e.getX(), e.getY())){
                     boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
