@@ -61,7 +61,6 @@ public class Controller {
                 return square;
             }
         }
-
         return null;
     }
 
