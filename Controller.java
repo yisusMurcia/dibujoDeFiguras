@@ -45,14 +45,8 @@ public class Controller {
         }
     }
 
-    public boolean deleteSquare(int x, int y){
-        for (Square square: squares){//Borarr cuadrado al clicker el borde derecho inferior
-            if ((square.getLado() + square.getX() - 10) <= x && x <= (square.getLado() + square.getX()) && (square.getLado() + square.getY() - 10) <= y &&  y <= (square.getLado() + square.getY())){
-                squares.remove(square);
-                return true;
-            }
-        }
-        return false;
+    public void deleteSquare(Square square){
+        squares.remove(square);
     }
 
     public Square getSquareAt(int x, int y){

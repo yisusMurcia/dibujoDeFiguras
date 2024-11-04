@@ -8,17 +8,20 @@ class View extends JFrame {
     private Color color = Color.cyan;
     private final JTextField squareCounter = new JTextField();
     private boolean moveSquareOption;
+    private boolean deleteSquareOption;
     private Square square;
 
 
     public View(Controller controller) {
         this.controller = controller; // Guardar referencia al controlador
         moveSquareOption = false;
+        deleteSquareOption = false;
 
         JButton clearAllButton = new JButton("Clear window");
         JButton reorganizeSquaresButton = new JButton("Reorganize squares");
         JPanel colorLabel = new JPanel();
         JButton moveSquareButton = new JButton("Move square");
+        JButton delteSquareButton = new JButton("Delete square");
         JTextField statusField = new JTextField("No selected");
 
         colorLabel.setBackground(color);
@@ -44,11 +47,19 @@ class View extends JFrame {
             statusField.setText(moveSquareOption? "Please select a square": "Selection disabled");
         });//Alternar la opción de mover cuadrado
 
+        delteSquareButton.addActionListener(e-> {
+            deleteSquareOption = !deleteSquareOption;
+            statusField.setText(deleteSquareOption? "Please select a square": "Selection disabled");
+        });//Alternar la opción de borrar cuadrado
+
+
+
         add(colorLabel);
         add(clearAllButton);
         add(squareCounter);
         add(reorganizeSquaresButton);
         add(moveSquareButton);
+        add(delteSquareButton);
         add(statusField);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -153,12 +164,15 @@ class View extends JFrame {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(moveSquareOption){
+                if(moveSquareOption || deleteSquareOption){
                     square = controller.getSquareAt(e.getX(), e.getY());
                     if(square != null){
                         statusField.setText("Square selected");
+                        if(deleteSquareOption){
+                            controller.deleteSquare(square);
+                        }
                     }
-                }else if(!controller.deleteSquare(e.getX(), e.getY())){
+                }else{
                     boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
                     controller.setColor(color);
                     controller.addSquare(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
