@@ -12,7 +12,7 @@ Puedes seleccionar el color de los cuadros pulsando alguna tecla
 - G: verde
 
 ## ¿Y si me equivoco?
-Puedes borrar los cuadros haciendo click en la esquina inferior derecha
+Puedes borrar los cuadros apretando el boton de delete square y seleccionado aquellos que quieras eliminar, vuelvelo a oprimir para desactivar el borrado de cuadrados
 
 ## Reoroganiza los cuadros
 Puedes reorganizar los cuadros aleatoriamente pulsando un botón
