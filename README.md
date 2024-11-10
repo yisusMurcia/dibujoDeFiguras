@@ -1,7 +1,7 @@
 # Dibujo de cuadros
 Con este código podrás dibujar cuadros en la pantalla, selecciona donde lo quieres pintar y dale click, con el izquierdo sera un cuadrado sin relleno, con el derecho uno con relleno,
 su tamaño sera aleatorio
-![image](https://github.com/user-attachments/assets/27934d61-5ea5-4b29-b317-e3debb7e6bd4)
+![img.png](img.png)
 
 
 ## Selecciona el color
