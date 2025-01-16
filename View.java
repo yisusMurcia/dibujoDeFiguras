@@ -175,7 +175,7 @@ class View extends JFrame {
                 }else{
                     boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
                     controller.setColor(color);
-                    controller.addSquare(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
+                    controller.addFigure(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
                 }
                 repaint(); // Solicita repintar la ventana
             }

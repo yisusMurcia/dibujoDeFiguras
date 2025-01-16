@@ -17,6 +17,15 @@ abstract class Figure{
         this.y = y;
     }
 
+    public Figure(Boolean filled, Color color, int side,  int x, int y) {
+        this.filled = filled;
+        this.color = color;
+        this.xSide = side;
+        this.ySide = side;
+        this.x = x;
+        this.y = y;
+    }
+
     public abstract void draw(Graphics g);
 
     public boolean inPosition(int x, int y){//Return true if x and y are into the square

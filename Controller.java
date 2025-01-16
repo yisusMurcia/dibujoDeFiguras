@@ -7,6 +7,7 @@ import java.awt.*;
 public class Controller {
     private List<Figure> figures = new ArrayList<>();
     private Color color;
+    private Figure figure;
     private final Random random = new Random();
 
     public Controller() {
@@ -14,9 +15,8 @@ public class Controller {
         view.setVisible(true); // Muestra la ventana
     }
 
-    public void addSquare(int x, int y, boolean relleno) {
-        int lado = random.nextInt(100) + 20; // Lado aleatorio entre 20 y 119
-        Square square = new Square(x, y, lado, relleno, color);
+    public void addFigure(int x, int y, boolean relleno) {
+        Square square = new Square(x, y, relleno, color);//Cambiar por una función que cree la figura que estás seleecionada
         figures.add(square);
     }
 
