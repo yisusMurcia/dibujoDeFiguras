@@ -16,8 +16,8 @@ public class Controller {
     }
 
     public void addFigure(int x, int y, boolean relleno) {
-        Square square = new Square(x, y, relleno, color);//Cambiar por una función que cree la figura que estás seleecionada
-        figures.add(square);
+        Figure figure = new Square(x, y, relleno, color);//Cambiar por una función que cree la figura que estás seleecionada
+        figures.add(figure);
     }
 
     public void drawSquare(Graphics g) {
@@ -34,7 +34,7 @@ public class Controller {
         this.color = color;
     }
 
-    public int getNumOfSquares(){
+    public int getNumOfFigures(){
         return figures.size();
     }
 
@@ -45,11 +45,11 @@ public class Controller {
         }
     }
 
-    public void deleteSquare(Figure figure){
+    public void deleteFigure(Figure figure){
         figures.remove(figure);
     }
 
-    public Figure getSquareAt(int x, int y){
+    public Figure getFigureAt(int x, int y){
         for(Figure figure : figures){
             if(figure.inPosition(x, y)){
                 return figure;

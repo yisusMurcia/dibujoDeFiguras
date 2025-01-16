@@ -10,6 +10,7 @@ class Square extends Figure{
         side = xSide;
     }
 
+    @Override
     public void draw(Graphics g) {
         if (filled) {
             g.setColor(color); // Color del relleno
@@ -25,10 +26,6 @@ class Square extends Figure{
     }
 
     public int getYSide() {
-        return side;
-    }
-
-    public int getSide() {
         return side;
     }
 }

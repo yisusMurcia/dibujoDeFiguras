@@ -9,6 +9,8 @@ abstract class Figure{
     protected int y;
     
     public Figure(Boolean filled, Color color, int xSide, int ySide,  int x, int y) {
+        //Figures constructor structure: (x, y, filled, color)
+
         this.filled = filled;
         this.color = color;
         this.xSide = xSide;

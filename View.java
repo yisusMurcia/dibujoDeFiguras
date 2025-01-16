@@ -6,34 +6,34 @@ import java.awt.event.*;
 class View extends JFrame {
     private final Controller controller;
     private Color color = Color.cyan;
-    private final JTextField squareCounter = new JTextField();
-    private boolean moveSquareOption;
-    private boolean deleteSquareOption;
+    private final JTextField figureCounter = new JTextField();
+    private boolean moveFigureOption;
+    private boolean deleteFigureOption;
     private Figure figure;
 
 
     public View(Controller controller) {
         this.controller = controller; // Guardar referencia al controlador
-        moveSquareOption = false;
-        deleteSquareOption = false;
+        moveFigureOption = false;
+        deleteFigureOption = false;
 
         JButton clearAllButton = new JButton("Clear window");
         JButton reorganizeSquaresButton = new JButton("Reorganize figures");
         JPanel colorLabel = new JPanel();
-        JButton moveSquareButton = new JButton("Move figure");
-        JButton delteSquareButton = new JButton("Delete figure");
+        JButton moveFigureButton = new JButton("Move figure");
+        JButton deleteFigureButton = new JButton("Delete figure");
         JTextField statusField = new JTextField("No selected");
 
         colorLabel.setBackground(color);
 
 
-        setTitle("figure drawing");
-        squareCounter.setText("Figures: 0");
+        setTitle("Figure drawing");
+        figureCounter.setText("Figures: 0");
         setFocusable(true);
 
         clearAllButton.addActionListener(e -> {
             controller.cleanSquareArray();
-            squareCounter.setText("Figure:" + controller.getNumOfSquares());
+            figureCounter.setText("Figure:" + controller.getNumOfFigures());
             repaint();
         });
 
@@ -42,24 +42,24 @@ class View extends JFrame {
             repaint();
         });
 
-        moveSquareButton.addActionListener(e-> {
-            moveSquareOption = !moveSquareOption;
-            statusField.setText(moveSquareOption? "Please select a square": "Selection disabled");
+        moveFigureButton.addActionListener(e-> {
+            moveFigureOption = !moveFigureOption;
+            statusField.setText(moveFigureOption ? "Please select a square": "Selection disabled");
         });//Alternar la opción de mover cuadrado
 
-        delteSquareButton.addActionListener(e-> {
-            deleteSquareOption = !deleteSquareOption;
-            statusField.setText(deleteSquareOption? "Please select a square": "Selection disabled");
+        deleteFigureButton.addActionListener(e-> {
+            deleteFigureOption = !deleteFigureOption;
+            statusField.setText(deleteFigureOption ? "Please select a square": "Selection disabled");
         });//Alternar la opción de borrar cuadrado
 
 
 
         add(colorLabel);
         add(clearAllButton);
-        add(squareCounter);
+        add(figureCounter);
         add(reorganizeSquaresButton);
-        add(moveSquareButton);
-        add(delteSquareButton);
+        add(moveFigureButton);
+        add(deleteFigureButton);
         add(statusField);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -84,7 +84,7 @@ class View extends JFrame {
         actionMap.put("moveSquareUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && figure != null) {
+                if (moveFigureOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia arriba
                     statusField.setText("Moving up");
                         figure.setY(figure.getY() > 4? (figure.getY() - 5) : 0);
@@ -96,7 +96,7 @@ class View extends JFrame {
         actionMap.put("moveSquareDown", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && figure != null) {
+                if (moveFigureOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia abajo
                     statusField.setText("Moving down");
                         figure.setY(figure.getY() < 595? (figure.getY() + 5) : 600);
@@ -108,7 +108,7 @@ class View extends JFrame {
         actionMap.put("moveSquareLeft", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && figure != null) {
+                if (moveFigureOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia abajo
                     statusField.setText("Moving left");
                     figure.setX(figure.getX() > 5? (figure.getX() - 5) : 0);
@@ -120,7 +120,7 @@ class View extends JFrame {
         actionMap.put("moveSquareRight", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && figure != null) {
+                if (moveFigureOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia abajo
                     statusField.setText("Moving right");
                     figure.setX(figure.getX() < 595? (figure.getX() + 5) : 600);
@@ -164,18 +164,18 @@ class View extends JFrame {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(moveSquareOption || deleteSquareOption){
-                    figure = controller.getSquareAt(e.getX(), e.getY());
+                if(moveFigureOption || deleteFigureOption){
+                    figure = controller.getFigureAt(e.getX(), e.getY());
                     if(figure != null){
-                        statusField.setText("Square selected");
-                        if(deleteSquareOption){
-                            controller.deleteSquare(figure);
+                        statusField.setText("Figure selected");
+                        if(deleteFigureOption){
+                            controller.deleteFigure(figure);
                         }
                     }
                 }else{
-                    boolean relleno = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
+                    boolean filled = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
                     controller.setColor(color);
-                    controller.addFigure(e.getX(), e.getY(), relleno); // Llama al controlador para agregar un cuadrado
+                    controller.addFigure(e.getX(), e.getY(), filled); // Llama al controlador para agregar un cuadrado
                 }
                 repaint(); // Solicita repintar la ventana
             }
@@ -186,6 +186,6 @@ class View extends JFrame {
     public void paint(Graphics g) {
         super.paintComponents(g); // Limpia el panel antes de dibujar
         controller.drawSquare(g); // Pide al controlador que dibuje los cuadrados
-        squareCounter.setText("Squares:" + controller.getNumOfSquares());
+        figureCounter.setText("Figures:" + controller.getNumOfFigures());
     }
 }
