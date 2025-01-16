@@ -5,7 +5,7 @@ import java.awt.*;
 
 // Clase principal que controla la aplicación
 public class Controller {
-    private List<Square> squares = new ArrayList<>();
+    private List<Figure> figures = new ArrayList<>();
     private Color color;
     private final Random random = new Random();
 
@@ -17,17 +17,17 @@ public class Controller {
     public void addSquare(int x, int y, boolean relleno) {
         int lado = random.nextInt(100) + 20; // Lado aleatorio entre 20 y 119
         Square square = new Square(x, y, lado, relleno, color);
-        squares.add(square);
+        figures.add(square);
     }
 
     public void drawSquare(Graphics g) {
-        for (Square square : squares) {
-            square.draw(g); // Dibuja cada cuadrado en la lista
+        for (Figure figure : figures) {
+            figure.draw(g); // Dibuja cada cuadrado en la lista
         }
     }
 
     public void cleanSquareArray(){
-        squares = new ArrayList<>();
+        figures = new ArrayList<>();
     }
 
     public void setColor(Color color) {
@@ -35,24 +35,24 @@ public class Controller {
     }
 
     public int getNumOfSquares(){
-        return squares.size();
+        return figures.size();
     }
 
     public void reorganizeSquares(int ySize, int xSize){
-        for (Square square : squares){
-            square.setX(random.nextInt(0, xSize - square.getLado()));
-            square.setY(random.nextInt(0, ySize - square.getLado()));
+        for (Figure figure : figures){
+            figure.setX(random.nextInt(0, xSize - figure.getXSide()));
+            figure.setY(random.nextInt(0, ySize - figure.getYSide()));
         }
     }
 
-    public void deleteSquare(Square square){
-        squares.remove(square);
+    public void deleteSquare(Figure figure){
+        figures.remove(figure);
     }
 
-    public Square getSquareAt(int x, int y){
-        for(Square square : squares){
-            if(square.inPosition(x, y)){
-                return square;
+    public Figure getSquareAt(int x, int y){
+        for(Figure figure : figures){
+            if(figure.inPosition(x, y)){
+                return figure;
             }
         }
         return null;

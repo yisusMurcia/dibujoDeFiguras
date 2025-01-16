@@ -1,52 +1,33 @@
 import java.awt.*;
 
 // Clase que representa un cuadrado
-class Square {
-    private int x;
-    private int y;
-    private final int lado;
-    private final boolean relleno;
-    private final Color color;
+class Square extends Figure{
+    private final int side;
 
-    public Square(int x, int y, int lado, boolean relleno, Color color) {
-        this.x = x;
-        this.y = y;
-        this.lado = lado;
-        this.relleno = relleno;
-        this.color = color;
+    public Square(int x, int y, int side, boolean filled, Color color) {
+        super(filled, color, side, side, x, y);
+        this.side = side;
     }
 
     public void draw(Graphics g) {
-        if (relleno) {
+        if (filled) {
             g.setColor(color); // Color del relleno
-            g.fillRect(x, y, lado, lado); // Dibuja el cuadrado
+            g.fillRect(x, y, xSide, xSide); // Dibuja el cuadrado
         }
 
         g.setColor(color); // Color del contorno
-        g.drawRect(x, y, lado, lado); // Dibuja el cuadrado
+        g.drawRect(x, y, side, side); // Dibuja el cuadrado
     }
 
-    public boolean inPosition(int x, int y){//Return true if x and y are into the square
-        return (this.x <= x && x <= (this.x + lado) && this.y <= y && y <= (this.y + lado));
+    public int getXSide() {
+        return side;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public int getYSide() {
+        return side;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getLado() {
-        return lado;
+    public int getSide() {
+        return side;
     }
 }

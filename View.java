@@ -9,7 +9,7 @@ class View extends JFrame {
     private final JTextField squareCounter = new JTextField();
     private boolean moveSquareOption;
     private boolean deleteSquareOption;
-    private Square square;
+    private Figure figure;
 
 
     public View(Controller controller) {
@@ -18,22 +18,22 @@ class View extends JFrame {
         deleteSquareOption = false;
 
         JButton clearAllButton = new JButton("Clear window");
-        JButton reorganizeSquaresButton = new JButton("Reorganize squares");
+        JButton reorganizeSquaresButton = new JButton("Reorganize figures");
         JPanel colorLabel = new JPanel();
-        JButton moveSquareButton = new JButton("Move square");
-        JButton delteSquareButton = new JButton("Delete square");
+        JButton moveSquareButton = new JButton("Move figure");
+        JButton delteSquareButton = new JButton("Delete figure");
         JTextField statusField = new JTextField("No selected");
 
         colorLabel.setBackground(color);
 
 
-        setTitle("Square drawing");
-        squareCounter.setText("Squares: 0");
+        setTitle("figure drawing");
+        squareCounter.setText("Figures: 0");
         setFocusable(true);
 
         clearAllButton.addActionListener(e -> {
             controller.cleanSquareArray();
-            squareCounter.setText("Squares:" + controller.getNumOfSquares());
+            squareCounter.setText("Figure:" + controller.getNumOfSquares());
             repaint();
         });
 
@@ -84,10 +84,10 @@ class View extends JFrame {
         actionMap.put("moveSquareUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && square != null) {
+                if (moveSquareOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia arriba
                     statusField.setText("Moving up");
-                        square.setY(square.getY() > 4? (square.getY() - 5) : 0);
+                        figure.setY(figure.getY() > 4? (figure.getY() - 5) : 0);
                     repaint();
                 }
             }
@@ -96,10 +96,10 @@ class View extends JFrame {
         actionMap.put("moveSquareDown", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && square != null) {
+                if (moveSquareOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia abajo
                     statusField.setText("Moving down");
-                        square.setY(square.getY() < 595? (square.getY() + 5) : 600);
+                        figure.setY(figure.getY() < 595? (figure.getY() + 5) : 600);
                     repaint();
                 }
             }
@@ -108,10 +108,10 @@ class View extends JFrame {
         actionMap.put("moveSquareLeft", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && square!= null) {
+                if (moveSquareOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia abajo
                     statusField.setText("Moving left");
-                    square.setX(square.getX() > 5? (square.getX() - 5) : 0);
+                    figure.setX(figure.getX() > 5? (figure.getX() - 5) : 0);
                     repaint();
                 }
             }
@@ -120,10 +120,10 @@ class View extends JFrame {
         actionMap.put("moveSquareRight", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (moveSquareOption && square != null) {
+                if (moveSquareOption && figure != null) {
                     // Implementa la lógica para mover el cuadrado hacia abajo
                     statusField.setText("Moving right");
-                    square.setX(square.getX() < 595? (square.getX() + 5) : 600);
+                    figure.setX(figure.getX() < 595? (figure.getX() + 5) : 600);
                     repaint();
                 }
             }
@@ -165,11 +165,11 @@ class View extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(moveSquareOption || deleteSquareOption){
-                    square = controller.getSquareAt(e.getX(), e.getY());
-                    if(square != null){
+                    figure = controller.getSquareAt(e.getX(), e.getY());
+                    if(figure != null){
                         statusField.setText("Square selected");
                         if(deleteSquareOption){
-                            controller.deleteSquare(square);
+                            controller.deleteSquare(figure);
                         }
                     }
                 }else{
