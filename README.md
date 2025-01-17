@@ -1,8 +1,17 @@
-# Dibujo de cuadros
-Con este código podrás dibujar cuadros en la pantalla, selecciona donde lo quieres pintar y dale click, con el izquierdo sera un cuadrado sin relleno, con el derecho uno con relleno,
+# Dibujo de figuras
+Con este código podrás dibujar figuras en la pantalla, selecciona donde lo quieres pintar y dale click, con el izquierdo sera un cuadrado sin relleno, con el derecho uno con relleno,
 su tamaño sera aleatorio
 ![img.png](img.png)
 
+
+## Elige la figura que deseas
+
+Usa el selector para elegir la figura que deseas dibujar, puedes elegir entre:
+- Cuadrado
+- Circulo
+- Triangulo
+- Ovalo
+- Rectangulo
 
 ## Selecciona el color
 Puedes seleccionar el color de los cuadros pulsando alguna tecla
