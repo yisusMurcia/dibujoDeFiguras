@@ -20,9 +20,6 @@ public class Controller {
         Figure figure;
 
         switch (figureType){
-            case "Square":
-                figure = new Square(x, y, relleno, color);
-                break;
             case "Circle":
                 figure = new Circle(x, y, relleno, color);
                 break;
