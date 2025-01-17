@@ -31,7 +31,7 @@ class View extends JFrame {
 
         colorLabel.setBackground(color);
 
-        selectColorBtn.addActionListener(e -> {
+        selectColorBtn.addActionListener(_ -> {
             color = JColorChooser.showDialog(this, "Select a color", color);
             colorLabel.setBackground(color);
         });
@@ -40,23 +40,23 @@ class View extends JFrame {
         figureCounter.setText("Figures: 0");
         setFocusable(true);
 
-        clearAllButton.addActionListener(e -> {
+        clearAllButton.addActionListener(_ -> {
             controller.cleanSquareArray();
             figureCounter.setText("Figure:" + controller.getNumOfFigures());
             repaint();
         });
 
-        reorganizeSquaresButton.addActionListener(e->{
-            controller.reorganizeSquares(600, 600);
+        reorganizeSquaresButton.addActionListener(_ ->{
+            controller.reorganizeSquares(getHeight(), getWidth());
             repaint();
         });
 
-        moveFigureButton.addActionListener(e-> {
+        moveFigureButton.addActionListener(_ -> {
             moveFigureOption = !moveFigureOption;
             statusField.setText(moveFigureOption ? "Please select a square": "Selection disabled");
         });//Alternar la opción de mover figura
 
-        deleteFigureButton.addActionListener(e-> {
+        deleteFigureButton.addActionListener(_ -> {
             deleteFigureOption = !deleteFigureOption;
             statusField.setText(deleteFigureOption ? "Please select a square": "Selection disabled");
         });//Alternar la opción de borrar figura

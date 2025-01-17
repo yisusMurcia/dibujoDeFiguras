@@ -7,7 +7,6 @@ import java.awt.*;
 public class Controller {
     private List<Figure> figures = new ArrayList<>();
     private Color color;
-    private Figure figure;
     private final Random random = new Random();
 
     public Controller() {
