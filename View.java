@@ -10,13 +10,16 @@ class View extends JFrame {
     private boolean moveFigureOption;
     private boolean deleteFigureOption;
     private Figure figure;
-    private JComboBox<String> figureSelector;
+    private final JComboBox<String> figureSelector;
 
 
     public View(Controller controller) {
         this.controller = controller; // Guardar referencia al controlador
         moveFigureOption = false;
         deleteFigureOption = false;
+
+        JButton selectColorBtn = new JButton("Select color");
+
 
         JButton clearAllButton = new JButton("Clear window");
         JButton reorganizeSquaresButton = new JButton("Reorganize figures");
@@ -28,6 +31,10 @@ class View extends JFrame {
 
         colorLabel.setBackground(color);
 
+        selectColorBtn.addActionListener(e -> {
+            color = JColorChooser.showDialog(this, "Select a color", color);
+            colorLabel.setBackground(color);
+        });
 
         setTitle("Figure drawing");
         figureCounter.setText("Figures: 0");
@@ -47,16 +54,17 @@ class View extends JFrame {
         moveFigureButton.addActionListener(e-> {
             moveFigureOption = !moveFigureOption;
             statusField.setText(moveFigureOption ? "Please select a square": "Selection disabled");
-        });//Alternar la opción de mover cuadrado
+        });//Alternar la opción de mover figura
 
         deleteFigureButton.addActionListener(e-> {
             deleteFigureOption = !deleteFigureOption;
             statusField.setText(deleteFigureOption ? "Please select a square": "Selection disabled");
-        });//Alternar la opción de borrar cuadrado
+        });//Alternar la opción de borrar figura
 
 
 
         add(colorLabel);
+        add(selectColorBtn);
         add(clearAllButton);
         add(figureCounter);
         add(reorganizeSquaresButton);
@@ -78,10 +86,6 @@ class View extends JFrame {
         inputMap.put(KeyStroke.getKeyStroke("DOWN"), "moveSquareDown");
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "moveSquareLeft");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "moveSquareRight");
-        inputMap.put(KeyStroke.getKeyStroke("R"), "changeColorRed");
-        inputMap.put(KeyStroke.getKeyStroke("G"), "changeColorGreen");
-        inputMap.put(KeyStroke.getKeyStroke("B"), "changeColorBlue");
-        inputMap.put(KeyStroke.getKeyStroke("Y"), "changeColorYellow");
 
 // Asociar las acciones a las teclas
         actionMap.put("moveSquareUp", new AbstractAction() {
@@ -132,37 +136,6 @@ class View extends JFrame {
             }
         });
 
-        actionMap.put("changeColorRed", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                color = Color.RED;
-                colorLabel.setBackground(color);
-            }
-        });
-
-        actionMap.put("changeColorGreen", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                color = Color.GREEN;
-                colorLabel.setBackground(color);
-            }
-        });
-
-        actionMap.put("changeColorBlue", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                color = Color.BLUE;
-                colorLabel.setBackground(color);
-            }
-        });
-
-        actionMap.put("changeColorYellow", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                color = Color.YELLOW;
-                colorLabel.setBackground(color);
-            }
-        });
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -176,7 +149,7 @@ class View extends JFrame {
                         }
                     }
                 }else{
-                    boolean filled = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
+                    boolean filled = (e.getButton() != MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
                     controller.setColor(color);
                     controller.addFigure((String) figureSelector.getSelectedItem(), e.getX(), e.getY(), filled); // Llama al controlador para agregar un cuadrado
                 }

@@ -17,24 +17,14 @@ public class Controller {
 
     public void addFigure(String figureType, int x, int y, boolean relleno) {
 
-        Figure figure;
+        Figure figure = switch (figureType) {
+            case "Circle" -> new Circle(x, y, relleno, color);
+            case "Rectangle" -> new Rectangle(x, y, relleno, color);
+            case "Oval" -> new Oval(x, y, relleno, color);
+            case "Triangle" -> new Triangle(x, y, relleno, color);
+            default -> new Square(x, y, relleno, color);
+        };
 
-        switch (figureType){
-            case "Circle":
-                figure = new Circle(x, y, relleno, color);
-                break;
-            case "Rectangle":
-                figure = new Rectangle(x, y, relleno, color);
-                break;
-            case "Oval":
-                figure = new Oval(x, y, relleno, color);
-                break;
-            case "Triangle":
-                figure = new Triangle(x, y, relleno, color);
-                break;
-            default:
-                figure = new Square(x, y, relleno, color);
-        }
         figures.add(figure);
     }
 

@@ -4,7 +4,7 @@ import java.util.Random;
 public class Triangle extends Figure{
 
     public Triangle(int x, int y, boolean filled, Color color){
-        super(filled, color, (new Random().nextInt(100) + 25), (new Random().nextInt(100) + 25), x, y);
+        super(filled, color, (new Random().nextInt(100) + 25), x, y);
     }
 
     @Override
