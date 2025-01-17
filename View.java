@@ -10,6 +10,7 @@ class View extends JFrame {
     private boolean moveFigureOption;
     private boolean deleteFigureOption;
     private Figure figure;
+    private JComboBox<String> figureSelector;
 
 
     public View(Controller controller) {
@@ -23,6 +24,7 @@ class View extends JFrame {
         JButton moveFigureButton = new JButton("Move figure");
         JButton deleteFigureButton = new JButton("Delete figure");
         JTextField statusField = new JTextField("No selected");
+        figureSelector = new JComboBox<>(new String[]{"Square", "Circle", "Rectangle", "Oval", "Triangle"});
 
         colorLabel.setBackground(color);
 
@@ -61,6 +63,7 @@ class View extends JFrame {
         add(moveFigureButton);
         add(deleteFigureButton);
         add(statusField);
+        add(figureSelector);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setLayout(new FlowLayout());
@@ -175,7 +178,7 @@ class View extends JFrame {
                 }else{
                     boolean filled = (e.getButton() == MouseEvent.BUTTON3); // Si se hizo clic con el botón derecho
                     controller.setColor(color);
-                    controller.addFigure(e.getX(), e.getY(), filled); // Llama al controlador para agregar un cuadrado
+                    controller.addFigure((String) figureSelector.getSelectedItem(), e.getX(), e.getY(), filled); // Llama al controlador para agregar un cuadrado
                 }
                 repaint(); // Solicita repintar la ventana
             }

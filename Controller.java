@@ -15,8 +15,29 @@ public class Controller {
         view.setVisible(true); // Muestra la ventana
     }
 
-    public void addFigure(int x, int y, boolean relleno) {
-        Figure figure = new Square(x, y, relleno, color);//Cambiar por una función que cree la figura que estás seleecionada
+    public void addFigure(String figureType, int x, int y, boolean relleno) {
+
+        Figure figure;
+
+        switch (figureType){
+            case "Square":
+                figure = new Square(x, y, relleno, color);
+                break;
+            case "Circle":
+                figure = new Circle(x, y, relleno, color);
+                break;
+            case "Rectangle":
+                figure = new Rectangle(x, y, relleno, color);
+                break;
+            case "Oval":
+                figure = new Oval(x, y, relleno, color);
+                break;
+            case "Triangle":
+                figure = new Triangle(x, y, relleno, color);
+                break;
+            default:
+                figure = new Square(x, y, relleno, color);
+        }
         figures.add(figure);
     }
 
