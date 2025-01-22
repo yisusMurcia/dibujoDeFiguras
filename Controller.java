@@ -34,7 +34,7 @@ public class Controller {
     }
 
     public void cleanSquareArray(){
-        figures = new ArrayList<>();
+        figures.clear();
     }
 
     public void setColor(Color color) {
@@ -54,6 +54,12 @@ public class Controller {
 
     public void deleteFigure(Figure figure){
         figures.remove(figure);
+    }
+
+    public void inverFiguresColor(){
+        for(Figure figure : figures){
+            figure.setFilled(!figure.isFilled());
+        }
     }
 
     public Figure getFigureAt(int x, int y){

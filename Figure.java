@@ -1,7 +1,7 @@
 import java.awt.*;
 
 abstract class Figure{
-    protected final boolean filled;
+    protected boolean filled;
     protected final Color color;
     protected final int xSide;
     protected final int ySide;
@@ -56,5 +56,13 @@ abstract class Figure{
 
     public int getYSide() {
         return ySide;
+    }
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
     }
 }

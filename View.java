@@ -11,6 +11,7 @@ class View extends JFrame {
     private boolean deleteFigureOption;
     private Figure figure;
     private final JComboBox<String> figureSelector;
+    private final JButton invertFillColorBtn;
 
 
     public View(Controller controller) {
@@ -20,7 +21,7 @@ class View extends JFrame {
 
         JButton selectColorBtn = new JButton("Select color");
 
-
+        invertFillColorBtn = new JButton("Invert fill color");
         JButton clearAllButton = new JButton("Clear window");
         JButton reorganizeSquaresButton = new JButton("Reorganize figures");
         JPanel colorLabel = new JPanel();
@@ -61,6 +62,11 @@ class View extends JFrame {
             statusField.setText(deleteFigureOption ? "Please select a square": "Selection disabled");
         });//Alternar la opción de borrar figura
 
+        invertFillColorBtn.addActionListener(_ -> {
+            controller.inverFiguresColor();
+            repaint();
+        });
+
 
 
         add(colorLabel);
@@ -70,6 +76,7 @@ class View extends JFrame {
         add(reorganizeSquaresButton);
         add(moveFigureButton);
         add(deleteFigureButton);
+        add(invertFillColorBtn);
         add(statusField);
         add(figureSelector);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -86,6 +93,7 @@ class View extends JFrame {
         inputMap.put(KeyStroke.getKeyStroke("DOWN"), "moveSquareDown");
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "moveSquareLeft");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "moveSquareRight");
+        inputMap.put(KeyStroke.getKeyStroke("N"), "alertFigureNumber");
 
 // Asociar las acciones a las teclas
         actionMap.put("moveSquareUp", new AbstractAction() {
@@ -133,6 +141,14 @@ class View extends JFrame {
                     figure.setX(figure.getX() < 595? (figure.getX() + 5) : 600);
                     repaint();
                 }
+            }
+        });
+
+        actionMap.put("alertFigureNumber", new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Number of figures: " + controller.getNumOfFigures());
             }
         });
 

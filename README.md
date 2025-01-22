@@ -28,3 +28,10 @@ Con este botón podras mover una figura a tu dispocición, aquí como hacerlo:
 2. Selecciona la figura: Haz click en la figura que quieras mover, al lado del botón aparecerá "figura selected" si la operación tuvo exito.
 3. Usa las flechas del teclado para moverlo
 4. Presiona nuevamente el boton al terminar: Así restableceras las funciones de crear y borrar.
+
+## Cambia el estilo
+Usando el boton de invert fill color, para añadir relleno a las figuras sin relleno y quitarlo a las figuras con relleno
+
+## Atajos
+Usa taclas para tener algunos atajos
+- N: para conocer el número de figuras
