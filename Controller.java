@@ -8,10 +8,12 @@ public class Controller {
     private List<Figure> figures = new ArrayList<>();
     private Color color;
     private final Random random = new Random();
+    private int totalFigures;
 
     public Controller() {
         View view = new View(this); // Inicializa la ventana y pasa una referencia al controlador
         view.setVisible(true); // Muestra la ventana
+        totalFigures = 0;
     }
 
     public void addFigure(String figureType, int x, int y, boolean relleno) {
@@ -24,10 +26,12 @@ public class Controller {
             default -> new Square(x, y, relleno, color);
         };
 
+        totalFigures++;
+
         figures.add(figure);
     }
 
-    public void drawSquare(Graphics g) {
+    public void drawFigure(Graphics g) {
         for (Figure figure : figures) {
             figure.draw(g); // Dibuja cada cuadrado en la lista
         }
@@ -69,6 +73,14 @@ public class Controller {
             }
         }
         return null;
+    }
+
+    public int getTotalFigures() {
+        return totalFigures;
+    }
+
+    public void increasTotalNumOfFigures(){
+        totalFigures++;
     }
 
     public static void main(String[] args) {

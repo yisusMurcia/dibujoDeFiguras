@@ -148,7 +148,7 @@ class View extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Number of figures: " + controller.getNumOfFigures());
+                JOptionPane.showMessageDialog(null, "Current figures: " + controller.getNumOfFigures() + "\nTotal drawn figures: " + controller.getTotalFigures());
             }
         });
 
@@ -177,7 +177,7 @@ class View extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paintComponents(g); // Limpia el panel antes de dibujar
-        controller.drawSquare(g); // Pide al controlador que dibuje los cuadrados
+        controller.drawFigure(g); // Pide al controlador que dibuje los cuadrados
         figureCounter.setText("Figures:" + controller.getNumOfFigures());
     }
 }

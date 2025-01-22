@@ -34,4 +34,4 @@ Usando el boton de invert fill color, para añadir relleno a las figuras sin rel
 
 ## Atajos
 Usa taclas para tener algunos atajos
-- N: para conocer el número de figuras total creadas y las que se muestran en la ventana;
+- N: para conocer el número de figuras
