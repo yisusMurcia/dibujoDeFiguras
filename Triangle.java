@@ -18,4 +18,9 @@ public class Triangle extends Figure{
         g.drawPolygon(new int[]{x, x + xSide, x + xSide/2}, new int[]{y + ySide, y + ySide, y}, 3); // Dibuja el triángulo
 
     }
+
+    @Override
+    public double getArea() {
+        return (double) (xSide * ySide) /2;
+    }
 }

@@ -17,4 +17,9 @@ public class Oval extends Figure{
         g.setColor(color); // Color del contorno
         g.drawOval(x, y, xSide, ySide); // Dibuja el óvalo
     }
+
+    @Override
+    public double getArea() {
+        return Math.PI* xSide*ySide;
+    }
 }

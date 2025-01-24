@@ -17,5 +17,11 @@ public class Circle extends Figure{
 
         g.setColor(color); // Color del contorno
         g.drawOval(x, y, side, side); // Dibuja el círculo
+
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI* side*side;
     }
 }

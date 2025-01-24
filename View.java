@@ -12,6 +12,7 @@ class View extends JFrame {
     private Figure figure;
     private final JComboBox<String> figureSelector;
     private final JButton invertFillColorBtn;
+    private boolean withArea = false;
 
 
     public View(Controller controller) {
@@ -94,8 +95,17 @@ class View extends JFrame {
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "moveSquareLeft");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "moveSquareRight");
         inputMap.put(KeyStroke.getKeyStroke("N"), "alertFigureNumber");
+        inputMap.put(KeyStroke.getKeyStroke("S"), "displaySquareNum");
+        inputMap.put(KeyStroke.getKeyStroke("A"), "displayArea");
 
         // Asociar las acciones a las teclas
+        actionMap.put("displayArea", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                withArea = true;
+            }
+        });
+
         actionMap.put("moveSquareUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -144,6 +154,13 @@ class View extends JFrame {
             }
         });
 
+        actionMap.put("displaySquareNum", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Number of squares: "+ controller.getNumOfSquares());
+            }
+        });
+
         actionMap.put("alertFigureNumber", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,6 +194,9 @@ class View extends JFrame {
     public void paint(Graphics g) {
         super.paintComponents(g); // Limpia el panel antes de dibujar
         controller.drawFigure(g); // Pide al controlador que dibuje las figuras
+        if(withArea){
+            controller.displayFiguresArea(g);
+        }
         figureCounter.setText("Figures:" + controller.getNumOfFigures());
     }
 }

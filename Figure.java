@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 abstract class Figure{
@@ -64,5 +65,12 @@ abstract class Figure{
 
     public void setFilled(boolean filled) {
         this.filled = filled;
+    }
+
+    public abstract double getArea();
+
+    public void displayArea(Graphics g){
+        g.setColor(Color.BLACK);
+        g.drawString(String.valueOf(getArea()), x, y);
     }
 }

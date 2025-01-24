@@ -9,9 +9,10 @@ public class Controller {
     private Color color;
     private final Random random = new Random();
     private int totalFigures;
+    private View view;
 
     public Controller() {
-        View view = new View(this); // Inicializa la ventana y pasa una referencia al controlador
+        view = new View(this); // Inicializa la ventana y pasa una referencia al controlador
         view.setVisible(true); // Muestra la ventana
         totalFigures = 0;
     }
@@ -73,6 +74,23 @@ public class Controller {
             }
         }
         return null;
+    }
+
+    public int getNumOfSquares(){
+        int numOfSquares = 0;
+        for(Figure figure : figures){
+            if (figure.getClass() == Square.class){
+                numOfSquares++;
+            }
+        }
+
+        return numOfSquares;
+    }
+
+    public void displayFiguresArea(Graphics g){
+        for(Figure figure: figures){
+            figure.displayArea(g);
+        }
     }
 
     public int getTotalFigures() {

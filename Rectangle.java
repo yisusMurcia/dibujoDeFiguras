@@ -17,4 +17,9 @@ public class Rectangle extends Figure{
         g.setColor(color); // Color del contorno
         g.drawRect(x, y, xSide, ySide); // Dibuja el cuadrado
     }
+
+    @Override
+    public double getArea() {
+        return xSide*ySide;
+    }
 }

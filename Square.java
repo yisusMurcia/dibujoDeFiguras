@@ -28,4 +28,9 @@ class Square extends Figure{
     public int getYSide() {
         return side;
     }
+
+    @Override
+    public double getArea() {
+        return side*side;
+    }
 }
