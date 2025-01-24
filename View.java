@@ -32,14 +32,14 @@ class View extends JFrame {
 
         colorLabel.setBackground(color);
 
+        setTitle("Figure drawing");
+        figureCounter.setText("Figures: 0");
+        setFocusable(true);
+
         selectColorBtn.addActionListener(_ -> {
             color = JColorChooser.showDialog(this, "Select a color", color);
             colorLabel.setBackground(color);
         });
-
-        setTitle("Figure drawing");
-        figureCounter.setText("Figures: 0");
-        setFocusable(true);
 
         clearAllButton.addActionListener(_ -> {
             controller.cleanSquareArray();
@@ -88,14 +88,14 @@ class View extends JFrame {
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = getRootPane().getActionMap();
 
-// Definir las teclas y las acciones
+        // Definir las teclas y las acciones
         inputMap.put(KeyStroke.getKeyStroke("UP"), "moveSquareUp");
         inputMap.put(KeyStroke.getKeyStroke("DOWN"), "moveSquareDown");
         inputMap.put(KeyStroke.getKeyStroke("LEFT"), "moveSquareLeft");
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "moveSquareRight");
         inputMap.put(KeyStroke.getKeyStroke("N"), "alertFigureNumber");
 
-// Asociar las acciones a las teclas
+        // Asociar las acciones a las teclas
         actionMap.put("moveSquareUp", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,7 +145,6 @@ class View extends JFrame {
         });
 
         actionMap.put("alertFigureNumber", new AbstractAction() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Current figures: " + controller.getNumOfFigures() + "\nTotal drawn figures: " + controller.getTotalFigures());
@@ -177,7 +176,7 @@ class View extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paintComponents(g); // Limpia el panel antes de dibujar
-        controller.drawFigure(g); // Pide al controlador que dibuje los cuadrados
+        controller.drawFigure(g); // Pide al controlador que dibuje las figuras
         figureCounter.setText("Figures:" + controller.getNumOfFigures());
     }
 }

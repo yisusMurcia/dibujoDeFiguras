@@ -5,7 +5,7 @@ import java.awt.*;
 
 // Clase principal que controla la aplicación
 public class Controller {
-    private List<Figure> figures = new ArrayList<>();
+    private final List<Figure> figures = new ArrayList<>();
     private Color color;
     private final Random random = new Random();
     private int totalFigures;
@@ -77,10 +77,6 @@ public class Controller {
 
     public int getTotalFigures() {
         return totalFigures;
-    }
-
-    public void increasTotalNumOfFigures(){
-        totalFigures++;
     }
 
     public static void main(String[] args) {
